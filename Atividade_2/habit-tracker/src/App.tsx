@@ -21,22 +21,33 @@ const App: React.FC = () => {
   const progress = total > 0 ? Math.round((done / total) * 100) : 0;
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
+    <Container
+      maxWidth={false}
+      sx={{
+        py: { xs: 2, sm: 3, md: 4 },
+        px: { xs: 1.5, sm: 2.5, md: 3.5 },
+      }}
+    >
       <Paper
         elevation={0}
         sx={{
-          p: { xs: 2.25, sm: 3, md: 4 },
+          maxWidth: 1240,
+          mx: 'auto',
+          p: { xs: 2, sm: 2.5, md: 3.5 },
           borderRadius: 8,
           border: (theme) => `1px solid ${alpha(theme.palette.primary.main, 0.08)}`,
           boxShadow: '0 30px 70px rgba(61, 38, 109, 0.10)',
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(247,243,255,0.98) 100%)',
+          background:
+            'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(247,243,255,0.98) 100%)',
           backdropFilter: 'blur(18px)',
+          overflow: 'hidden',
         }}
       >
         <Stack spacing={3}>
           <Box
             sx={{
-              p: { xs: 2.5, md: 3 },
+              px: { xs: 2.25, sm: 3, md: 4 },
+              py: { xs: 2.25, sm: 2.75, md: 3.25 },
               borderRadius: 6,
               background:
                 'linear-gradient(135deg, rgba(124,58,237,0.95) 0%, rgba(168,85,247,0.92) 52%, rgba(236,72,153,0.88) 100%)',
@@ -68,79 +79,162 @@ const App: React.FC = () => {
               }}
             />
 
-            <Stack
-              direction={{ xs: 'column', md: 'row' }}
-              justifyContent="space-between"
-              alignItems={{ xs: 'flex-start', md: 'center' }}
-              gap={3}
-              sx={{ position: 'relative', zIndex: 1 }}
+            <Box
+              sx={{
+                position: 'relative',
+                zIndex: 1,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  xl: 'minmax(0, 1fr) 460px',
+                },
+                gap: { xs: 2, sm: 2.5, xl: 3 },
+                alignItems: 'center',
+                width: '100%',
+                minWidth: 0,
+              }}
             >
-              <Stack direction="row" alignItems="center" gap={2}>
+              <Box
+                sx={{
+                  minWidth: 0,
+                  display: 'grid',
+                  gridTemplateColumns: '64px minmax(0, 1fr)',
+                  gap: { xs: 1.25, sm: 1.75, md: 2 },
+                  alignItems: 'center',
+                }}
+              >
                 <Box
                   sx={{
-                    width: 68,
-                    height: 68,
+                    width: 64,
+                    height: 64,
                     borderRadius: 4,
                     display: 'grid',
                     placeItems: 'center',
                     bgcolor: 'rgba(255,255,255,0.16)',
                     border: '1px solid rgba(255,255,255,0.2)',
                     backdropFilter: 'blur(10px)',
+                    flexShrink: 0,
                   }}
                 >
-                  <SelfImprovementIcon sx={{ fontSize: 36, color: 'common.white' }} />
+                  <SelfImprovementIcon sx={{ fontSize: 34, color: 'common.white' }} />
                 </Box>
-                <Stack spacing={0.5}>
-                  <Typography variant="h4" sx={{ fontSize: { xs: '1.7rem', sm: '2.1rem' } }}>
+
+                <Box sx={{ minWidth: 0 }}>
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontSize: { xs: '1.5rem', sm: '1.9rem', md: '2.2rem' },
+                      lineHeight: 1.08,
+                      whiteSpace: 'normal',
+                      wordBreak: 'break-word',
+                    }}
+                  >
                     Controle de Hábitos Diários
                   </Typography>
-                  <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.84)' }}>
+
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mt: 0.75,
+                      color: 'rgba(255,255,255,0.84)',
+                      lineHeight: 1.35,
+                      whiteSpace: 'normal',
+                      wordBreak: 'break-word',
+                      maxWidth: { xl: 620 },
+                    }}
+                  >
                     Organize sua rotina, acompanhe seu progresso e mantenha constância.
                   </Typography>
-                </Stack>
-              </Stack>
+                </Box>
+              </Box>
 
               <Paper
                 elevation={0}
                 sx={{
-                  minWidth: { xs: '100%', md: 240 },
-                  p: 2,
+                  width: '100%',
+                  maxWidth: { xs: '100%', xl: 400 },
+                  minWidth: 0,
+                  px: { xs: 2.5, sm: 3, xl: 3.5 },
+                  py: { xs: 2, sm: 2.25 },
                   borderRadius: 5,
                   bgcolor: 'rgba(255,255,255,0.14)',
                   border: '1px solid rgba(255,255,255,0.18)',
                   color: 'common.white',
                   backdropFilter: 'blur(14px)',
+                  overflow: 'hidden',
+                  justifySelf: { xs: 'stretch', xl: 'end' },
+                  ml: { xl: 2 },
+                  boxSizing: 'border-box',
                 }}
               >
-                <Stack spacing={1}>
-                  <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.75)' }}>
-                    Progresso de hoje
+                <Stack spacing={1} sx={{ minWidth: 0 }}>
+                  <Typography
+                    variant="overline"
+                    sx={{
+                      color: 'rgba(255,255,255,0.78)',
+                      lineHeight: 1.1,
+                      display: 'block',
+                      whiteSpace: 'normal',
+                    }}
+                  >
+                    PROGRESSO DE HOJE
                   </Typography>
-                  <Typography variant="h5">
+
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      lineHeight: 1,
+                      fontSize: { xs: '2rem', md: '2.2rem' },
+                    }}
+                  >
                     {done}/{total}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.78)' }}>
+
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'rgba(255,255,255,0.82)',
+                      lineHeight: 1.35,
+                      whiteSpace: 'normal',
+                      wordBreak: 'break-word',
+                      pr: 1,
+                    }}
+                  >
                     hábitos concluídos hoje
                   </Typography>
+
                   <LinearProgress
                     variant="determinate"
                     value={progress}
                     sx={{
-                      height: 10,
+                      mt: 0.5,
+                      width: '100%',
+                      height: 8,
                       borderRadius: 999,
                       bgcolor: 'rgba(255,255,255,0.18)',
+                      overflow: 'hidden',
                       '& .MuiLinearProgress-bar': {
                         borderRadius: 999,
                         background: 'linear-gradient(90deg, #ffffff 0%, #f9d7ff 100%)',
                       },
                     }}
                   />
-                  <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.72)' }}>
+
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: 'rgba(255,255,255,0.76)',
+                      lineHeight: 1.25,
+                      display: 'block',
+                      whiteSpace: 'normal',
+                      pr: 1,
+                    }}
+                  >
                     {progress}% concluído
                   </Typography>
                 </Stack>
               </Paper>
-            </Stack>
+            </Box>
           </Box>
 
           <Stack
